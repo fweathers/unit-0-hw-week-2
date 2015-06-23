@@ -10,6 +10,9 @@
 
 @interface Person: NSObject
 
+- (BOOL)checkSameCity: (Person *) person;
+- (Person *)registerChild;
+
 - (void)setName:(NSString *)name;
 - (NSString *)name;
 
@@ -26,6 +29,23 @@
     NSString *_phoneNumber;
     NSString *_city;
 }
+
+- (BOOL)checkSameCity: (Person *) person {
+    if ([[person city]isEqualToString:[self city]]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (Person *)registerChild {
+    Person *Abc = [[Person alloc] init];
+    [Abc setPhoneNumber:[self phoneNumber]];
+    [Abc setCity: [self city]];
+    
+    return Abc;
+}
+
 
 - (void)setName:(NSString *)name {
     _name = name;
@@ -56,8 +76,21 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        Person *Parent = [[Person alloc] init];
+        [Parent setCity: @"Long Island City"];
+        [Parent setPhoneNumber: @"1234"];
+        
+        Person *B = [[Person alloc] init];
+        [B setCity: @"Long Island City"];
+        
+        NSLog(@"%d ",[B checkSameCity: Parent]);
+    
+        
+        Person *Abc = [Parent registerChild];
+        NSLog(@"Parent lives in %@ and child lives in %@ \n", [Parent city], [Abc city]);
+        NSLog(@"Parent phone number ends with %@ and child phone number ends with %@", [Parent phoneNumber], [Abc phoneNumber]);
+        
     }
     return 0;
 }
