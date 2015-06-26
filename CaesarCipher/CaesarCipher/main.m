@@ -14,6 +14,7 @@
 - (NSString *)decode:(NSString *)string offset:(int)offset;
 - (BOOL)codeBreaker:(NSString *)cipherOne
           compareTo:(NSString *)cipherTwo;
+
 @end
 
 
@@ -77,7 +78,7 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@", stringTwo);
         NSLog(@"%@", cipherOutput);
         
-        if ([cipherOne isEqualTo:stringTwo stringOne:[cipherOne encode:@"Please Work" offset:3]]) {
+        if ([cipherOne codeBreaker:stringTwo compareTo:[cipherOne encode:@"Please Work" offset:3]]) {
             NSLog(@"Yes the two inputs match");
         }
         else {
