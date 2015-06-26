@@ -13,8 +13,8 @@
 - (BOOL)checkSameCity: (Person *) person;
 - (Person *)registerChild;
 
-- (void)setName:(NSString *)name;
-- (NSString *)name;
+- (void)setName:(NSString *)name; //sets the property
+- (NSString *)name;                 //gets the property
 
 - (void)setCity:(NSString *)city;
 - (NSString *)city;
